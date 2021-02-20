@@ -2,7 +2,7 @@ name: R2S-OpenWrt
 
 on:
   schedule:
-    - cron: 5 9 * * 6
+    - cron: 5 4 * * 5
   watch:
     types: started
 
@@ -131,13 +131,13 @@ jobs:
         df -h
         cd openwrt
         let make_process=$(nproc)+1
-        make toolchain/install -j${make_process} V=s
+        make toolchain/install -j${make_process}
     - name: Compile Openwrt
       run: |
         df -h
         cd openwrt
         let make_process=$(nproc)+1
-        make -j${make_process} V=s || make -j${make_process} V=s || make -j1 V=s
+        make -j${make_process} || make -j${make_process} V=s || make -j1 V=s
     - name: Cleaning
       run: |
         df -h
